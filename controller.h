@@ -31,7 +31,8 @@ class Controller
 public:
     /**
                  * @brief Constructor
-                 */
+                 *///// DOC --> http://doc.qt.io/qt-5/gettingstartedqt.html
+
     Controller();
 
     /**
@@ -51,15 +52,23 @@ public:
 
     //                this->mainWindow = mainWindow;
     //            }
-    const MainWindow &getMainWindow()
+    inline const MainWindow &getMainWindow()
     {
         return mainWindow;
     }
 
+    inline EventListViewer &getEventListViewer()
+    {
+        return eventViewer;
+    }
+
 private:
+
     MainWindow mainWindow;
     EventListViewer eventViewer;
 
+    void setupEventListViewer();
+    void setupGraphViewer();
 };
 //} // namespace ctrl
 #endif // CONTROLLER_H

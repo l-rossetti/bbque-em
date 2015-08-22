@@ -23,14 +23,13 @@ other QTableModel ex --> http://www.informit.com/articles/article.aspx?p=1405547
 QTableWidget vs QTableView --> http://stackoverflow.com/questions/15290932/qtablewidget-vs-qtableview
 */
 
-
 #include "event_wrapper.h"
 
 using namespace bbque;
 
 EventWrapper::EventWrapper(std::vector<Event> &events, QObject *parent):QAbstractTableModel(parent)
 {
-//    this->events = events;
+    this->events = events;
 //    Event *e = new Event("module2", "type1", 1);
 //    Event *e1 = new Event("module2", "type2", 2);
 //    events.push_back(*e);

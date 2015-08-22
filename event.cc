@@ -15,19 +15,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-    #include "event.h"
+#include "event.h"
 
-    using namespace bbque;
+using namespace bbque;
 
-    Event::Event(std::string const & module, std::string const & type, const int & value):
+Event::Event(std::string const & module, std::string const & type, const int & value):
 
-        timestamp(0),
-        module(module),
-        type(type),
-        value(value) {
+    timestamp(0),
+    module(module),
+    type(type),
+    value(value) {
 
-    }
+}
 
-    Event::~Event() {
+Event::~Event() {
 
-    }
+}

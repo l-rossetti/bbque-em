@@ -29,67 +29,67 @@
 
 namespace bbque {
 
-    class EventManager {
+class EventManager {
 
-    public:
+public:
 
-        /**
+    /**
          * @brief Constructor
          */
-        EventManager();
+    EventManager();
 
-        /**
+    /**
          * @brief Destructor
          */
-        ~EventManager();
+    ~EventManager();
 
-        /**
+    /**
          * @brief Get the EventManager instance
          */
-        static EventManager & GetInstance();
+    static EventManager & GetInstance();
 
-        /**
+    /**
          * @brief TimeToString
          * @param timestamp The timestamp to convert
          */
-        std::string TimeToString(std::time_t timestamp);
+    std::string TimeToString(std::time_t timestamp);
 
-        /**
+    /**
          * @brief InitializeArchive
          * @param event The event to push
          */
-        void InitializeArchive(Event event);
+    void InitializeArchive(Event event);
 
-        /**
+    /**
          * @brief Push
          * @param event The event to push
          */
-        void Push(Event event);
+    void Push(Event event);
 
-        /**
+    /**
          * @brief Serialize
          * @param ew The eventWrapper to serialize
          */
-        void Serialize(EventWrapper *ew);
+    void Serialize(EventWrapper *ew);
 
-        /**
+    /**
          * @brief Deserialize
          */
-        EventWrapper* Deserialize();
+    EventWrapper* Deserialize();
 
-    private:
+private:
 
-        /**
+    /**
          * @brief The logger used by the resource manager.
          */
-        //std::unique_ptr<bu::Logger> logger;
+    //std::unique_ptr<bu::Logger> logger;
 
-        /**
+    /**
          * @brief The path to the currently used archive.
          */
-        std::string archive_path;
-        EventWrapper ew;
-    };
+    std::string archive_path;
+    EventWrapper ew;
+};
 
 } // namespace bbque
 #endif // BBQUE_EVENT_MANAGER_H_

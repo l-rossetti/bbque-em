@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #ifndef EVENTLISTVIEWER_H
 #define EVENTLISTVIEWER_H
 
@@ -21,7 +22,7 @@
 #include "event_wrapper.h"
 
 namespace Ui {
-    class EventListViewer;
+class EventListViewer;
 }
 
 class EventListViewer : public QWidget
