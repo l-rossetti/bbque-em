@@ -23,7 +23,7 @@ SOURCES +=\
     event_manager.cc \
     controller.cc \
     event_wrapper.cc \
-    event_wrapper1.cc
+    model.cc
 
 HEADERS  += \
     event.h \
@@ -32,7 +32,7 @@ HEADERS  += \
     controller.h \
     main_window.h \
     event_wrapper.h \
-    event_wrapper1.h
+    model.h
 
 FORMS += \
     event_list_viewer.ui \

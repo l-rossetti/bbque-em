@@ -18,7 +18,6 @@
 #ifndef BBQUE_EVENT_WRAPPER_H_
 #define BBQUE_EVENT_WRAPPER_H_
 
-#include <QAbstractTableModel>
 #include "event.h"
 
 #include <boost/serialization/access.hpp>

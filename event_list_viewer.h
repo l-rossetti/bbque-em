@@ -15,11 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef EVENTLISTVIEWER_H
-#define EVENTLISTVIEWER_H
+#ifndef EVENTLISTVIEWER_H_
+#define EVENTLISTVIEWER_H_
 
 #include <QWidget>
-#include "event_wrapper1.h"
+#include "model.h"
 
 namespace Ui {
 class EventListViewer;
@@ -32,13 +32,13 @@ class EventListViewer : public QWidget
 
 public:
     explicit EventListViewer(QWidget *parent = 0);
-    explicit EventListViewer(bbque::EventWrapper1 *wrapper, QWidget *parent = 0);
+    //explicit EventListViewer(bbque::Model model, QWidget *parent = 0);
     ~EventListViewer();
 
-    void setupTable(bbque::EventWrapper1 *wrapper);
+    void setupTable(bbque::Model *model);
 
 private:
     Ui::EventListViewer *ui;
 };
 
-#endif // EVENTLISTVIEWER_H
+#endif // EVENTLISTVIEWER_H_

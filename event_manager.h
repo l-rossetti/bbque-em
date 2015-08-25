@@ -20,7 +20,7 @@
 
 #include "event.h"
 #include "event_wrapper.h"
-#include "event_wrapper1.h"
+#include "model.h"
 //#include "bbque/utils/logging/logger.h"
 
 //namespace bu = bbque::utils;
@@ -58,7 +58,8 @@ public:
     std::string TimeToString(std::time_t timestamp);
 
     /**
-         * @brief InitializeArchive
+         * @brief Init#include "model.h"
+ializeArchive
          * @param event The event to push
          */
     void InitializeArchive(Event event);

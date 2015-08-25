@@ -15,13 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CONTROLLER_H
-#define CONTROLLER_H
+#ifndef CONTROLLER_H_
+#define CONTROLLER_H_
 
 #include <QMainWindow>
 #include "event_manager.h"
-#include "event_wrapper1.h"
 #include "event_list_viewer.h"
+#include "model.h"
 #include "main_window.h"
 
 //namespace ctrl {
@@ -66,9 +66,10 @@ private:
 
     MainWindow mainWindow;
     EventListViewer eventViewer;
+    bbque::Model model;
 
     void setupEventListViewer();
     void setupGraphViewer();
 };
 //} // namespace ctrl
-#endif // CONTROLLER_H
+#endif // CONTROLLER_H_

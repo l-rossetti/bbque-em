@@ -42,24 +42,7 @@ MainWindow* Controller::SetupMainWindow(){
 
 void Controller::setupEventListViewer(){
 
-    //bbque::EventManager *manager = &bbque::EventManager::GetInstance();
-    //manager->InitializeArchive(bbque::Event("mod1","type1",12));
-    //manager->Push(bbque::Event("mod1","type1",76));
-
-    bbque::EventManager em = bbque::EventManager::GetInstance();
-    bbque::Event event("init1","type1",666);
-    em.InitializeArchive(event);
-    bbque::Event event1("pp2", "demo2", 199);
-    em.Push(event1);
-
-    //TODO: fix model with metods to get the vector of events
-    //bbque::EventWrapper *wrapper = manager->Deserialize(); //get wrapper via manager
-
-    bbque::EventWrapper ew = em.Deserialize();
-
-    std::vector<bbque::Event> events = ew.GetEvents();
-    //bbque::Event *e = &events.front();
-    //std::string module = e->GetModule();
+    std::vector<bbque::Event> events = model.GetEvents();
 
     if(events.size()>0)
         std::cout << "events.size is >0" << std::endl;
@@ -68,7 +51,7 @@ void Controller::setupEventListViewer(){
         //wrapper->AddEvent(bbque::Event("mock_event","mock_type",0));
     }
 
-    //getEventListViewer().setupTable(model);
+    eventViewer.setupTable(&model);
 }
 
 void Controller::setupGraphViewer(){

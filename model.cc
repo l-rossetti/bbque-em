@@ -23,35 +23,36 @@ other QTableModel ex --> http://www.informit.com/articles/article.aspx?p=1405547
 QTableWidget vs QTableView --> http://stackoverflow.com/questions/15290932/qtablewidget-vs-qtableview
 */
 
-#include "event_wrapper1.h"
+#include "model.h"
 
 using namespace bbque;
 
-EventWrapper1::EventWrapper1(std::vector<Event> &events, QObject *parent):QAbstractTableModel(parent)
-{
-    this->events = events;
-//    Event *e = new Event("module2", "type1", 1);
-//    Event *e1 = new Event("module2", "type2", 2);
-//    events.push_back(*e);
-//    events.push_back(*e1);
-//    delete e;
-//    delete e1;
+Model::Model(QObject *parent) {
+    std::cout << "Creating model" << std::endl;
+    bbque::EventManager em = bbque::EventManager::GetInstance();
+    bbque::Event event("init1","type1",666);
+    em.InitializeArchive(event);
+    bbque::EventWrapper ew = em.Deserialize();
+    em.Serialize(ew);
+    SetEvents(ew.GetEvents());
 }
-EventWrapper1::~EventWrapper1()
+
+Model::~Model()
 {
 
 }
-int EventWrapper1::rowCount(const QModelIndex & /*parent*/) const
+
+int Model::rowCount(const QModelIndex & /*parent*/) const
 {
     return events.size();
 }
 
-int EventWrapper1::columnCount(const QModelIndex & /*parent*/) const
+int Model::columnCount(const QModelIndex & /*parent*/) const
 {
     return MAX_COLS;
 }
 
-QVariant EventWrapper1::data(const QModelIndex &index, int role) const
+QVariant Model::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())
         return QVariant();
@@ -81,7 +82,7 @@ QVariant EventWrapper1::data(const QModelIndex &index, int role) const
         return QVariant();
 }
 
-QVariant EventWrapper1::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant Model::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (role == Qt::DisplayRole)
     {

@@ -15,47 +15,37 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef BBQUE_EVENT_WRAPPER1_H_
-#define BBQUE_EVENT_WRAPPER1_H_
+#ifndef MODEL_H_
+#define MODEL_H_
 
 #include <QAbstractTableModel>
 #include "event.h"
-
-
-#include <boost/serialization/access.hpp>
-#include <boost/serialization/vector.hpp>
+#include "event_wrapper.h"
+#include "event_manager.h"
 
 namespace bbque {
 
 /**
     This class is the Model for the model-view pattern
 */
-class EventWrapper1 : public QAbstractTableModel
+class Model : public QAbstractTableModel
 {
     Q_OBJECT
 public:
 
     /**
         * @brief Constructor
-        * @param parent The container QObject
+        * @param parent The EventManagercontainer QObject
         */
-    EventWrapper1(QObject *parent = 0) {
-        std::cout << "Creating event_wrapper" << std::endl;
-    }
-    /**
-        * @brief Constructor
-        * @param events The list of events
-        * @param parent The container QObject
-        */
-    EventWrapper1(std::vector<Event> & events, QObject *parent = 0);
+    Model(QObject *parent = 0);
 
     /**
         * @brief Destructor
         */
-    ~EventWrapper1();
+    ~Model();
 
     /**
-        * @brief Get the list of events
+        * @brief Get the list
         */
     inline std::vector<Event> GetEvents() {
         return this->events;
@@ -68,13 +58,6 @@ public:
         this->events = events;
     }
 
-    /**
-        * @brief Add an event to the list of events
-        */
-    inline void AddEvent(Event event) {
-        this->events.insert(this->events.begin(), event);
-    }
-
     enum { ID=0, MODULE, TYPE, VALUE,/*TIMESTAMP,*/ MAX_COLS };
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const ;
@@ -83,17 +66,6 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
 
 private:
-
-    friend class boost::serialization::access;
-    template<class Archive>
-    void serialize(Archive & ar, const unsigned int version)
-    {
-        if (version == 0 || version != 0)
-        {
-            ar & events;
-        }
-    }
-
     std::vector<Event> events;
 };
 

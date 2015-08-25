@@ -27,25 +27,24 @@ EventListViewer::EventListViewer(QWidget *parent) : QWidget(parent),
     ui->setupUi(this);
 }
 
-EventListViewer::EventListViewer(bbque::EventWrapper1 *wrapper, QWidget *parent) : QWidget(parent),
-    ui(new Ui::EventListViewer)
-{
+//EventListViewer::EventListViewer(bbque::Model model, QWidget *parent) : QWidget(parent),
+//    ui(new Ui::EventListViewer)
+//{
 
-    ui->setupUi(this);
-    EventListViewer::setupTable(wrapper);
-}
+//    ui->setupUi(this);
+//    EventListViewer::setupTable(model);
+//}
 
 EventListViewer::~EventListViewer()
 {
     delete ui;
 }
 
-void EventListViewer::setupTable(bbque::EventWrapper1 *wrapper)
+void EventListViewer::setupTable(bbque::Model *model)
 {
-    //std::vector<bbque::Event> events;
     // filter used to sort the table rows by clicking the table headers
     QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel;
-    proxyModel->setSourceModel(wrapper);
+    proxyModel->setSourceModel(model);
     ui->tableView->setModel(proxyModel);
     //ui->tableView->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
 }
