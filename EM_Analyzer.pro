@@ -20,17 +20,19 @@ SOURCES +=\
     event.cc \
     event_list_viewer.cc \
     main_window.cc \
-    event_wrapper.cc \
     event_manager.cc \
-    controller.cc
+    controller.cc \
+    event_wrapper.cc \
+    event_wrapper1.cc
 
 HEADERS  += \
     event.h \
-    event_wrapper.h \
     event_list_viewer.h \
     event_manager.h \
     controller.h \
-    main_window.h
+    main_window.h \
+    event_wrapper.h \
+    event_wrapper1.h
 
 FORMS += \
     event_list_viewer.ui \

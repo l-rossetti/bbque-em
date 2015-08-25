@@ -19,7 +19,7 @@
 #define EVENTLISTVIEWER_H
 
 #include <QWidget>
-#include "event_wrapper.h"
+#include "event_wrapper1.h"
 
 namespace Ui {
 class EventListViewer;
@@ -32,10 +32,10 @@ class EventListViewer : public QWidget
 
 public:
     explicit EventListViewer(QWidget *parent = 0);
-    explicit EventListViewer(bbque::EventWrapper *wrapper, QWidget *parent = 0);
+    explicit EventListViewer(bbque::EventWrapper1 *wrapper, QWidget *parent = 0);
     ~EventListViewer();
 
-    void setupTable(bbque::EventWrapper *wrapper);
+    void setupTable(bbque::EventWrapper1 *wrapper);
 
 private:
     Ui::EventListViewer *ui;

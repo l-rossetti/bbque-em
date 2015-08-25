@@ -16,6 +16,7 @@
  */
 
 #include "event_manager.h"
+#include "event_wrapper.h"
 //#include "bbque/utils/utility.h"
 
 #include <fstream>
@@ -68,7 +69,7 @@ EventManager& EventManager::GetInstance() {
     return instance;
 }
 
-void EventManager::Serialize(EventWrapper *ew) {
+void EventManager::Serialize(EventWrapper ew) {
 
     // create and open the archive for output
     std::ofstream ofs(archive_path);
@@ -87,9 +88,9 @@ void EventManager::Serialize(EventWrapper *ew) {
     }
 }
 
-EventWrapper* EventManager::Deserialize() {
+EventWrapper EventManager::Deserialize() {
 
-    //EventWrapper ew;
+    EventWrapper ew;
 
     // open the archive for input
     std::ifstream ifs(archive_path);
@@ -106,8 +107,8 @@ EventWrapper* EventManager::Deserialize() {
         std::cout << "Cannot open archive for reading" << std::endl;
         //logger->Error("Cannot open archive for reading");
     }
-    EventWrapper* wrapperPointer = &ew;
-    return wrapperPointer;
+
+    return ew;
 }
 
 void EventManager::InitializeArchive(Event event) {
@@ -117,10 +118,9 @@ void EventManager::InitializeArchive(Event event) {
     std::time_t timestamp = std::time(nullptr);
     event.SetTimestamp(timestamp);
 
-//    EventWrapper ew;
+    EventWrapper ew;
     ew.AddEvent(event);
-    EventWrapper* wrapperPointer = &ew;
-    Serialize(wrapperPointer);
+    Serialize(ew);
 }
 
 void EventManager::Push(Event event) {
@@ -130,8 +130,8 @@ void EventManager::Push(Event event) {
     std::time_t timestamp = std::time(nullptr);
     event.SetTimestamp(timestamp);
 
-    EventWrapper* wrapperPointer = &ew;
-    wrapperPointer = Deserialize() ;
-    wrapperPointer->AddEvent(event);
-    Serialize(wrapperPointer);
+    EventWrapper ew;
+    ew = Deserialize() ;
+    ew.AddEvent(event);
+    Serialize(ew);
 }

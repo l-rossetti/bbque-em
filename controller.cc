@@ -37,19 +37,27 @@ MainWindow* Controller::SetupMainWindow(){
     mainWindow.getSplitter()->addWidget(&eventViewer);
 
     return &mainWindow;
-
 }
 
 
 void Controller::setupEventListViewer(){
 
-    bbque::EventManager *manager = &bbque::EventManager::GetInstance();
-    manager->InitializeArchive(bbque::Event("mod1","type1",12));
-    manager->Push(bbque::Event("mod1","type1",76));
+    //bbque::EventManager *manager = &bbque::EventManager::GetInstance();
+    //manager->InitializeArchive(bbque::Event("mod1","type1",12));
+    //manager->Push(bbque::Event("mod1","type1",76));
 
-    bbque::EventWrapper *wrapper = manager->Deserialize(); //get wrapper via manager
+    bbque::EventManager em = bbque::EventManager::GetInstance();
+    bbque::Event event("init1","type1",666);
+    em.InitializeArchive(event);
+    bbque::Event event1("pp2", "demo2", 199);
+    em.Push(event1);
 
-    std::vector<bbque::Event> events = wrapper->GetEvents();
+    //TODO: fix model with metods to get the vector of events
+    //bbque::EventWrapper *wrapper = manager->Deserialize(); //get wrapper via manager
+
+    bbque::EventWrapper ew = em.Deserialize();
+
+    std::vector<bbque::Event> events = ew.GetEvents();
     //bbque::Event *e = &events.front();
     //std::string module = e->GetModule();
 
@@ -57,10 +65,10 @@ void Controller::setupEventListViewer(){
         std::cout << "events.size is >0" << std::endl;
     else {
         std::cout << "events.size is 0 --> adding a mock event" << std::endl;
-        wrapper->AddEvent(bbque::Event("mock_event","mock_type",0));
+        //wrapper->AddEvent(bbque::Event("mock_event","mock_type",0));
     }
 
-    getEventListViewer().setupTable(wrapper);
+    //getEventListViewer().setupTable(model);
 }
 
 void Controller::setupGraphViewer(){

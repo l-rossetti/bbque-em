@@ -20,7 +20,7 @@
 
 #include <QMainWindow>
 #include "event_manager.h"
-#include "event_wrapper.h"
+#include "event_wrapper1.h"
 #include "event_list_viewer.h"
 #include "main_window.h"
 

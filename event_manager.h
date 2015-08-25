@@ -20,6 +20,7 @@
 
 #include "event.h"
 #include "event_wrapper.h"
+#include "event_wrapper1.h"
 //#include "bbque/utils/logging/logger.h"
 
 //namespace bu = bbque::utils;
@@ -28,6 +29,8 @@
 #define ARCHIVE_FOLDER "/var/events/"
 
 namespace bbque {
+
+class EventWrapper;
 
 class EventManager {
 
@@ -70,12 +73,12 @@ public:
          * @brief Serialize
          * @param ew The eventWrapper to serialize
          */
-    void Serialize(EventWrapper *ew);
+    void Serialize(EventWrapper ew);
 
     /**
          * @brief Deserialize
          */
-    EventWrapper* Deserialize();
+    EventWrapper Deserialize();
 
 private:
 
@@ -88,7 +91,6 @@ private:
          * @brief The path to the currently used archive.
          */
     std::string archive_path;
-    EventWrapper ew;
 };
 
 } // namespace bbque
