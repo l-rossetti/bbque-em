@@ -32,7 +32,12 @@ Model::Model(QObject *parent) {
     bbque::EventManager em = bbque::EventManager::GetInstance();
     bbque::Event event("init1","type1",666);
     em.InitializeArchive(event);
-    bbque::EventWrapper ew = em.Deserialize();
+    bbque::EventWrapper ew;
+    em.Push(Event("prova2","prova",12));
+    ew = em.Deserialize();
+    em.Serialize(ew);
+    em.Push(Event("prova3","prova3",11));
+    ew = em.Deserialize();
     em.Serialize(ew);
     SetEvents(ew.GetEvents());
 }
