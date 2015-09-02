@@ -36,6 +36,7 @@ Model::Model(QObject *parent) {
     em.Push(Event("prova2","prova",12));
     ew = em.Deserialize();
     em.Serialize(ew);
+    //sleep(11);
     em.Push(Event("prova3","prova3",11));
     ew = em.Deserialize();
     em.Serialize(ew);
@@ -72,11 +73,26 @@ QVariant Model::data(const QModelIndex &index, int role) const
         case MODULE:
             return QString::fromStdString(events[index.row()].GetModule());
             break;
-        case VALUE:
-            return events.at(index.row()).GetValue();
+        case TIMESTAMP:{
+            std::time_t timestamp = events[index.row()].GetTimestamp();
+
+            //return QString::fromStdString(std::asctime(std::localtime(&timestamp)));
+
+            const int n = snprintf(NULL, 0, "%lu", timestamp);
+            assert(n > 0);
+            char buf[n+1];
+            int c = snprintf(buf, n+1, "%lu", timestamp);
+            assert(buf[n] == '\0');
+            assert(c == n);
+
+            return QString::fromStdString(buf);
+        }
             break;
         case TYPE:
             return QString::fromStdString(events[index.row()].GetType());
+            break;
+        case VALUE:
+            return events.at(index.row()).GetValue();
             break;
         default:
             return QVariant();
@@ -98,10 +114,12 @@ QVariant Model::headerData(int section, Qt::Orientation orientation, int role) c
                 return QString( "#" );
             case MODULE:
                 return QString( "Module" );
-            case VALUE:
-                return QString( "Value" );
+            case TIMESTAMP:
+                return QString( "Timestamp" );
             case TYPE:
                 return QString( "Type" );
+            case VALUE:
+                return QString( "Value" );
             default: return QString("Name not provided for this column");
             }
         }

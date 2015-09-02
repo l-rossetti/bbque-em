@@ -28,7 +28,7 @@ class EventListViewer;
 class EventListViewer : public QWidget
 {
     Q_OBJECT
-    static const int COLUMN_NUM = 5;
+    //static const int COLUMN_NUM = 5;
 
 public:
     explicit EventListViewer(QWidget *parent = 0);

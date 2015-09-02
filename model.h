@@ -58,7 +58,7 @@ public:
         this->events = events;
     }
 
-    enum { ID=0, MODULE, TYPE, VALUE,/*TIMESTAMP,*/ MAX_COLS };
+    enum { ID=0, MODULE, TIMESTAMP, TYPE, VALUE, MAX_COLS };
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const ;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
